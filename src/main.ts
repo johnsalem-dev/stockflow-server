@@ -11,6 +11,7 @@ async function bootstrap() {
   app.useLogger(app.get(PinoLogger));
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
   app.useGlobalFilters(new PrismaExceptionFilter())
+  app.enableCors();
 
   const config = new DocumentBuilder()
     .setTitle('Inventory API')

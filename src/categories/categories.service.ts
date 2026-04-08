@@ -10,7 +10,7 @@ export class CategoriesService {
 
     async findAll(): Promise<Category[]> {
         return this.prisma.category.findMany({
-            include: { _count: { select: { items: true}} }
+            include: { _count: { select: { items: true}}, department: true }
         });
     }
 

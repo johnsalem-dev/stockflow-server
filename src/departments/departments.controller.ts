@@ -2,8 +2,8 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { DepartmentsService } from './departments.service';
 import { ApiOkResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
 import { Department } from '@prisma/client';
-import { CreateCategoryDto } from 'src/categories/dto/create-category.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { CreateDepartmentDto } from './dto/create-department.dto';
 
 @Controller('departments')
 export class DepartmentsController {
@@ -19,7 +19,7 @@ export class DepartmentsController {
     @Post()
     @ApiOperation({ summary: 'Create a new department' })
     @ApiOkResponse({ description: 'Returns the created department' })
-    create(@Body() createDepartmentDto: CreateCategoryDto): Promise<Department>{
+    create(@Body() createDepartmentDto: CreateDepartmentDto): Promise<Department>{
         return this.departmentsService.create(createDepartmentDto);
     }
 
