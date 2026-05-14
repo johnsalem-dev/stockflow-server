@@ -18,6 +18,12 @@ export class ItemsController {
         return this.itemsService.findAll(filter);
     }
 
+    @Get(':id')
+    @ApiOperation({ summary: 'Get detailed item history (Purchases & Issuances)' })
+    async getOne(@Param('id', ParseIntPipe) id: number) {
+        return this.itemsService.findOne(id);
+    }
+
     @Post()
     @ApiOperation({ summary: 'Create a new inventory item' })
     @ApiOkResponse({ description: 'Returns the created item' })

@@ -8,6 +8,15 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
 export class SuppliersService {
     constructor(private prisma: PrismaService) {}
 
+    async searchDropdown(search?: string) {
+        return this.prisma.supplier.findMany({
+            where: search ? { name: { contains : search, mode: 'insensitive' as const}} : undefined,
+            select: { id: true, name: true },
+            orderBy: { name: 'asc' },
+            take: 20
+        });
+    }
+
     async findAll(): Promise<Supplier[]> {
         return this.prisma.supplier.findMany({
             include: { _count: { select: { purchases: true } } }

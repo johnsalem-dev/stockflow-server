@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { SuppliersService } from './suppliers.service';
 import { ApiOkResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
 import { Supplier } from '@prisma/client';
@@ -8,6 +8,13 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
 @Controller('suppliers')
 export class SuppliersController {
     constructor(private readonly suppliersService: SuppliersService) {}
+
+    @Get('search')
+    @ApiOperation({ summary: 'Lightweight search for dropdowns' })
+    @ApiOkResponse({ description: 'Returns up to 20 minimal suppliers records' })
+    searchDropdown(@Query('q') q?: string) {
+      return this.suppliersService.searchDropdown(q);
+    }
 
     @Get()
     @ApiOperation({ summary: 'Get all suppliers' })

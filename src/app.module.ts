@@ -12,6 +12,7 @@ import { SuppliersModule } from './suppliers/suppliers.module';
 import { ItemsModule } from './items/items.module';
 import { PurchasesModule } from './purchases/purchases.module';
 import { IssuancesModule } from './issuances/issuances.module';
+import { UomModule } from './uom/uom.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { IssuancesModule } from './issuances/issuances.module';
     ItemsModule,
     PurchasesModule,
     IssuancesModule,
+    UomModule,
   ],
   controllers: [AppController],
   providers: [AppService],
